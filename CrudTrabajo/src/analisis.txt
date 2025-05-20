@@ -1,0 +1,31 @@
+
+public class Crud {
+	
+	public crearProfe()
+	public mostrarProfe()
+	public buscarProfe()
+	public actualizarProfe()
+	public eliminarProfe()
+	
+}
+
+-----------------------------------------------------------
+
+public class main {
+	
+	menu()
+}
+
+-----------------------------------------------------------
+
+public class Profesor {
+	
+	Public Profesor(String nombre, String apellido, String especialidad, String email){
+		String nombre
+		String apellido
+		String especialidad
+		String email
+	}
+	
+	
+}
