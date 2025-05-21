@@ -43,8 +43,16 @@ public class Main {
 				switch (respuesta) {
 
 				case 1 -> {
+					boolean funciona;
+					
 					prof = datosProf();
-					pdao.crearProfe(prof);
+					funciona = pdao.crearProfe(prof);
+					
+					if(funciona) {
+						System.out.println("Se ha creado correctamente");
+					}else {
+						System.out.println("No se ha podido crear");
+					}
 				}
 				case 2 -> {
 					ArrayList<Profesor> lista = pdao.mostrarProfe();
@@ -75,6 +83,8 @@ public class Main {
 					System.out.println("Que profesor quieres actualizar (busqueda por id)");
 					id = sc.nextInt();
 
+					prof = pdao.buscarProfe(id);
+					if(prof != null) {
 					System.out.println("Quieres cambiar la especialidad o el email");
 					cambiar = sc.next();
 
@@ -87,13 +97,16 @@ public class Main {
 					}
 					}
 					cambiado = sc.next();
+				
 					pdao.actualizarProfe(cambiar, cambiado, id);
+					System.out.println("Actualizado correctamente");
+					}else {
+						System.out.println("Ese profesor no se encuentra en la base de datos");
+					}
 
 				}
 				case 5 -> {
 					int id;
-
-					boolean funciona;
 
 					System.out.println("Que profesor quieres eliminar (busqueda por id)");
 					id = sc.nextInt();
@@ -101,7 +114,7 @@ public class Main {
 					prof = pdao.buscarProfe(id);
 					
 					if(prof != null) {
-						funciona = pdao.eliminarProfe(id);
+						pdao.eliminarProfe(id);
 						System.out.println("Se ha eliminado correctamente");
 					}else {
 						System.out.println("Ese profesor no se encuentra en la base de datos");

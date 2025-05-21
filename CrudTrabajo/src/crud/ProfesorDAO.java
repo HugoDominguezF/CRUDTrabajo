@@ -33,9 +33,11 @@ public class ProfesorDAO {
 		return conexion;
 	}
 
-	public void crearProfe(Profesor prof) {
+	public boolean crearProfe(Profesor prof) {
 
 		String sql = "INSERT INTO profesores (nombre, apellido, especialidad, email)" + "VALUES (?, ?, ?, ?)";
+		
+		boolean funciona=true;
 
 		PreparedStatement ps;
 		try {
@@ -49,7 +51,9 @@ public class ProfesorDAO {
 
 		} catch (SQLException e) {
 			System.out.println("Error al insertar el profesor: " + e.getMessage());
+			funciona = false;
 		}
+		return funciona;
 	}
 
 	public ArrayList<Profesor> mostrarProfe() {
@@ -98,11 +102,10 @@ public class ProfesorDAO {
 		return nuevo;
 	}
 
-	public boolean actualizarProfe(String cambiar, String nuevo, int id) {
+	public void actualizarProfe(String cambiar, String nuevo, int id) {
 		
 		String sql = "UPDATE profesores SET " + cambiar + " = ? WHERE id_profesor = ?";
 		
-		boolean funciona=true;
 
 		try {
 		    PreparedStatement ps = conexion.prepareStatement(sql);
@@ -114,16 +117,12 @@ public class ProfesorDAO {
 
 		} catch (SQLException e) {
 		    System.out.println("Error al actualizar el profesor: " + e.getMessage());
-		    funciona = false;
 		}
-		return funciona;
 		
 	}
 
-	public boolean eliminarProfe(int id) {
+	public void eliminarProfe(int id) {
 		String sql = "delete FROM profesores where id_profesor = ?";
-
-		boolean funciona=true;
 		
 		try {
 			PreparedStatement ps = conexion.prepareStatement(sql);
@@ -133,9 +132,7 @@ public class ProfesorDAO {
 
 		} catch (SQLException e) {
 			System.out.println("Error al buscar el profesor: " + e.getMessage());
-			funciona = false;
 		}
-		return funciona;
 	}
 
 }
