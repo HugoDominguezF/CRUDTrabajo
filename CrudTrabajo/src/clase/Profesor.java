@@ -2,6 +2,7 @@ package clase;
 
 public class Profesor {
 	
+	int id;
 	String nombre;
 	String apellido;
 	String especialidad;
@@ -25,6 +26,33 @@ public class Profesor {
 		this.email = email;
 		}
 		
+	}
+	public Profesor(int id,String nombre, String apellido, String especialidad, String email) {
+		
+		if(id >0) {
+			this.id=id;
+		}
+		
+		if(nombre != null && !nombre.isBlank()) {
+			this.nombre = nombre;
+		}
+
+		if(apellido != null && !apellido.isBlank()) {
+		this.apellido = apellido;
+		}
+		
+		if(especialidad != null && !especialidad.isBlank()) {
+		this.especialidad = especialidad;
+		}
+		
+		if(email != null && !email.isBlank()) {
+		this.email = email;
+		}
+		
+	}
+	
+	public int getId() {
+		return this.id;
 	}
 	
 	public String getApellido() {
@@ -59,10 +87,8 @@ public class Profesor {
 		this.nombre = nombre;
 	}
 	
-	
-	
-	
-	
-	
+	public String toString() {
+		return id+" "+nombre+" "+apellido+" "+especialidad+" "+email;
+	}
 	
 }
